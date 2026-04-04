@@ -1,40 +1,49 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function HeroSection() {
+
+  const [showHint, setShowHint] = useState(false);
+
+  /* 🔥 SHOW SCROLL POPUP AFTER DELAY */
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowHint(true);
+
+      // auto hide after 4 sec
+      setTimeout(() => setShowHint(false), 4000);
+
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="relative min-h-screen flex items-center justify-center text-center px-6 bg-[#f5efe6] overflow-hidden">
+    <div className="relative h-screen flex items-start justify-center text-center ...">
 
-      {/* BORDER IMAGE (ONLY MOBILE) */}
-<img
-  src="/border.png"
-  alt="border"
-  className="
-    absolute inset-0 w-full h-full object-contain
-    pointer-events-none
-    scale-[1.08] translate-y-[10px]
-    animate-[zoom_10s_ease-in-out_infinite]
-    md:hidden
-  "
-/>
+      {/* BORDER IMAGE */}
+      <img
+        src="/border.png"
+        alt="border"
+        className="
+          absolute top-0 left-0 w-full h-full
+          object-cover
+          object-top
+          pointer-events-none
+          scale-[1.05]
+          md:hidden
+        "
+      />
 
-{/* 🔥 FADE OVERLAY */}
-<div
-  className="
-    absolute bottom-0 left-0 w-full h-32
-    bg-gradient-to-b from-transparent to-[#f5efe6]
-    pointer-events-none
-    md:hidden
-  "
-/>
+      {/* FADE */}
+      <div className="absolute bottom-0 w-full h-28 bg-gradient-to-b from-transparent to-[#f5efe6]" />
 
       {/* CONTENT */}
-      <div className="relative z-10 max-w-2xl">
+      <div className="relative z-10 max-w-2xl px-4 pt-24 md:pt-24">
 
-        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
           className="text-sm tracking-widest text-gray-600 font-serif mb-2"
         >
           Wedding Invitation
@@ -43,69 +52,82 @@ export default function HeroSection() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="text-xs text-gray-500 font-serif mb-8"
+          transition={{ delay: 0.3 }}
+          className="text-xs text-gray-500 font-serif mb-6"
         >
           Together with our families
         </motion.p>
 
-        {/* Names */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="text-5xl md:text-7xl font-script text-teal-800 leading-tight"
+          transition={{ delay: 0.6 }}
+          className="text-5xl md:text-7xl font-script text-teal-800"
         >
           L. Preethi
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="text-3xl my-4 font-script text-gray-500"
-        >
+        <motion.p className="text-3xl my-3 font-script text-gray-500">
           &
         </motion.p>
 
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.3 }}
-          className="text-5xl md:text-7xl font-script text-teal-800 leading-tight"
+          transition={{ delay: 1 }}
+          className="text-5xl md:text-7xl font-script text-teal-800"
         >
           S. Pravin Bala
         </motion.h1>
 
-        {/* Divider */}
         <motion.div
           initial={{ width: 0 }}
-          animate={{ width: "6rem" }}
-          transition={{ duration: 1, delay: 1.8 }}
-          className="h-[1px] bg-gray-400 my-8 mx-auto"
+          animate={{ width: "5rem" }}
+          transition={{ delay: 1.4 }}
+          className="h-[1px] bg-gray-400 my-6 mx-auto"
         />
 
-        {/* SHORT INVITATION TEXT (20 words) */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2.2 }}
-          className="text-base md:text-lg text-gray-700 font-serif leading-relaxed"
+          transition={{ delay: 1.8 }}
+          className="text-base text-gray-700 font-serif leading-relaxed"
         >
           With love and joy, we invite you to celebrate our wedding and share this beautiful beginning with us.
         </motion.p>
-
-        {/* Date */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2.8 }}
-          className="text-lg font-serif text-gray-700 tracking-wide mt-8"
-        >
-          
-        </motion.p>
-
       </div>
+
+      {/* 👇 ALWAYS VISIBLE SCROLL ARROW */}
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 1.5 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-teal-800 text-xl"
+      >
+        ↓
+      </motion.div>
+
+      {/* 🔥 POPUP SCROLL HINT */}
+      <AnimatePresence>
+        {showHint && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
+            transition={{ duration: 0.5 }}
+            className="
+              fixed bottom-16 left-1/2 -translate-x-1/2
+              bg-teal-800 text-white
+              px-6 py-3 rounded-full
+              shadow-lg
+              text-sm font-serif
+              z-50
+            "
+          >
+            Scroll to Explore ↓
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }

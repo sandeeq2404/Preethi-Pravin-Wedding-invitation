@@ -26,6 +26,7 @@ function App() {
       audioRef.current.muted = false;
       audioRef.current.play().catch(() => {});
     }
+    
 
     // 🖼️ PRELOAD IMAGES (IMPORTANT)
     const images = [

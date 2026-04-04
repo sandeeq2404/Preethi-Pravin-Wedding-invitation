@@ -84,7 +84,7 @@ export default function EventsSection() {
           </p>
 
           <p className="text-teal-900 font-serif text-base mb-1">
-            Guna Hall, Hotel Anandas
+            Guna Hall, Hotel Anandhaas
           </p>
 
           <p className="text-sm text-gray-600 mb-6">

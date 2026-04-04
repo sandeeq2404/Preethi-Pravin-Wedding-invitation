@@ -18,11 +18,13 @@ export default function ScratchCircle({ value, onReveal }: Props) {
 
     // 🎨 GOLD GRADIENT (premium look)
     const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    gradient.addColorStop(0, "#f5d27a");
-    gradient.addColorStop(1, "#c9a227");
 
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+gradient.addColorStop(0, "#d4af37");   // gold
+gradient.addColorStop(0.9, "#f8f8f8"); // silver shine
+gradient.addColorStop(1, "#c0c0c0");   // silver
+
+ctx.fillStyle = gradient;
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     let isDrawing = false;
 

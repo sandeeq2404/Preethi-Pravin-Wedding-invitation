@@ -85,7 +85,7 @@ export default function CountdownTimer() {
 
   return (
     // Added overflow-hidden to the section to ensure nothing ever causes horizontal scroll
-    <section className="py-16 md:py-24 px-2 sm:px-6 bg-[#ffffff] text-center w-full overflow-hidden">
+    <section className="py-16 md:py-24 px-2 sm:px-6 bg-[#f8f3eb] text-center w-full overflow-hidden">
       
       {/* TITLE */}
       <motion.h2
