@@ -136,24 +136,25 @@ export default function HeroSection() {
 
       {/* POPUP */}
       <AnimatePresence>
-        {showHint && (
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 40 }}
-            className="
-              fixed bottom-32 md:bottom-24 left-1/2 -translate-x-1/2
-              bg-teal-800 text-white
-              px-6 py-3 md:px-8 md:py-4
-              rounded-full shadow-lg
-              text-sm md:text-lg font-serif
-              z-50
-            "
-          >
-            Scroll to Explore ↓
-          </motion.div>
-        )}
-      </AnimatePresence>
+  {showHint && (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 40 }}
+      className="
+        fixed bottom-32 md:bottom-24 
+        left-1/2 transform -translate-x-1/2  /* This guarantees perfect horizontal centering */
+        bg-teal-800 text-white
+        px-6 py-3 md:px-8 md:py-4
+        rounded-full shadow-lg
+        text-sm md:text-lg font-serif
+        z-50
+      "
+    >
+      Scroll to Explore ↓
+    </motion.div>
+  )}
+</AnimatePresence>
 
     </div>
   );
