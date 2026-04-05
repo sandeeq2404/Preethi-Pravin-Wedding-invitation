@@ -14,7 +14,6 @@ export default function HeroSection() {
   }, []);
 
   return (
-    // Changed flex alignment to items-start to push content higher
     <div className="relative min-h-screen flex items-start justify-center text-center overflow-hidden bg-[#f5efe6]">
 
       {/* MOBILE BORDER */}
@@ -49,10 +48,9 @@ export default function HeroSection() {
       <div className="absolute bottom-0 w-full h-28 bg-gradient-to-b from-transparent to-[#f5efe6] z-20" />
 
       {/* CONTENT */}
-      {/* Pushed content down slightly with pt-24 so it doesn't hit the absolute top */}
       <div className="relative z-40 max-w-5xl px-4 pt-24 md:pt-32">
 
-        {/* TITLE - Increased size */}
+        {/* TITLE */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -61,7 +59,7 @@ export default function HeroSection() {
           Wedding Invitation
         </motion.p>
 
-        {/* SUBTITLE - Increased size slightly */}
+        {/* SUBTITLE */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -115,6 +113,16 @@ export default function HeroSection() {
           With love and joy, we invite you to celebrate our wedding and share this beautiful beginning with us.
         </motion.p>
 
+        {/* 👇 NEW CONTENT ADDED TO FILL THE GAP */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.2 }}
+          className="text-2xl md:text-4xl text-teal-800 font-script mt-8 md:mt-12"
+        >
+          You are warmly invited
+        </motion.p>
+
       </div>
 
       {/* SCROLL ARROW */}
@@ -126,7 +134,7 @@ export default function HeroSection() {
         ↓
       </motion.div>
 
-      {/* POPUP - Ensured it is centered at the bottom */}
+      {/* POPUP */}
       <AnimatePresence>
         {showHint && (
           <motion.div
