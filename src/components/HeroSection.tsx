@@ -80,7 +80,7 @@ export default function HeroSection() {
             transition={{ delay: 0.6 }}
             className="text-5xl md:text-7xl lg:text-8xl font-script text-teal-800"
           >
-            S. Pravin Bala
+            L. Preethi
           </motion.h1>
 
           <motion.span className="text-3xl md:text-5xl text-gray-500 font-script">
@@ -93,7 +93,7 @@ export default function HeroSection() {
             transition={{ delay: 1 }}
             className="text-5xl md:text-7xl lg:text-8xl font-script text-teal-800"
           >
-            L. Preethi
+            S. Pravin Bala
           </motion.h1>
         </div>
 
