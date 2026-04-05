@@ -87,7 +87,7 @@ function App() {
             {/* FOOTER */}
             <footer className="bg-[#0f3d3e] text-white py-12 px-6 text-center">
               <h3 className="text-4xl font-script text-amber-200 mb-4">
-                L. Preethi & S. Pravin Bala
+                S. Pravin Bala & L. Preethi
               </h3>
 
               <p className="text-teal-100 mb-6 font-serif">
