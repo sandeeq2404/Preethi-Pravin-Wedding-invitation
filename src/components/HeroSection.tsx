@@ -14,7 +14,8 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center text-center overflow-hidden bg-[#f5efe6]">
+    // Changed flex alignment to items-start to push content higher
+    <div className="relative min-h-screen flex items-start justify-center text-center overflow-hidden bg-[#f5efe6]">
 
       {/* MOBILE BORDER */}
       <img
@@ -48,22 +49,24 @@ export default function HeroSection() {
       <div className="absolute bottom-0 w-full h-28 bg-gradient-to-b from-transparent to-[#f5efe6] z-20" />
 
       {/* CONTENT */}
-      <div className="relative z-40 max-w-5xl px-4 -mt-10 md:-mt-16">
+      {/* Pushed content down slightly with pt-24 so it doesn't hit the absolute top */}
+      <div className="relative z-40 max-w-5xl px-4 pt-24 md:pt-32">
 
-        {/* TITLE */}
+        {/* TITLE - Increased size */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-sm md:text-2xl tracking-widest text-gray-600 font-serif mb-2"
+          className="text-lg md:text-3xl tracking-widest text-gray-600 font-serif mb-2"
         >
           Wedding Invitation
         </motion.p>
 
+        {/* SUBTITLE - Increased size slightly */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-xs md:text-lg text-gray-500 font-serif mb-6 md:mb-12"
+          className="text-sm md:text-xl text-gray-500 font-serif mb-6 md:mb-12"
         >
           Together with our families
         </motion.p>
@@ -118,12 +121,12 @@ export default function HeroSection() {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 1.5 }}
-        className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 text-teal-800 text-xl md:text-3xl z-50"
+        className="absolute bottom-20 md:bottom-10 left-1/2 -translate-x-1/2 text-teal-800 text-xl md:text-3xl z-50"
       >
         ↓
       </motion.div>
 
-      {/* POPUP */}
+      {/* POPUP - Ensured it is centered at the bottom */}
       <AnimatePresence>
         {showHint && (
           <motion.div
@@ -131,7 +134,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
             className="
-              fixed bottom-16 md:bottom-24 left-1/2 -translate-x-1/2
+              fixed bottom-32 md:bottom-24 left-1/2 -translate-x-1/2
               bg-teal-800 text-white
               px-6 py-3 md:px-8 md:py-4
               rounded-full shadow-lg

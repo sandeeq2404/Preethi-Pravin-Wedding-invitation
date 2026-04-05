@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ScratchCircle from "./ScratchCircle";
 
-// 👇 ADD CONFETTI HERE (TOP OR BOTTOM — BOTH OK)
+// 👇 ADD CONFETTI HERE 
 const Confetti = () => {
   const height = typeof window !== "undefined" ? window.innerHeight : 800;
 
@@ -13,7 +13,6 @@ const Confetti = () => {
           key={i}
           initial={{
             y: -100,
-            // ✅ FIX: Using 100vw forces it to span the entire screen from left to right!
             x: `${Math.random() * 100}vw`, 
             rotate: Math.random() * 360,
           }}
@@ -29,7 +28,6 @@ const Confetti = () => {
           style={{
             width: `${6 + Math.random() * 6}px`,
             height: `${10 + Math.random() * 10}px`,
-            // ✅ FIX: Changed to theme colors (Teal & Brown variations)
             backgroundColor: ["#115e59", "#8b4513", "#0d9488", "#92400e"][i % 4],
             borderRadius: "2px",
           }}
@@ -64,31 +62,44 @@ export default function ScratchReveal() {
         Reveal the Date
       </h2>
 
-      <p className="font-serif text-gray-600 mb-12 max-w-xl mx-auto">
+      <p className="font-serif text-gray-600 mb-8 max-w-xl mx-auto px-4">
         A special moment awaits you. Gently unveil each piece to discover
         the day we begin our beautiful journey together.
       </p>
 
-      <div className="flex justify-center gap-10">
+      {/* Button-like instruction tag */}
+      <div className="mb-12">
+        <p className="inline-block px-6 py-2 rounded-full border border-teal-800/20 bg-teal-800/5 text-teal-800 font-serif text-sm tracking-widest uppercase shadow-sm cursor-default">
+          Scratch the cards
+        </p>
+      </div>
+
+      <div className="flex justify-center gap-6 md:gap-10 px-4">
         <ScratchCircle value="20" onReveal={handleReveal} />
         <ScratchCircle value="APR" onReveal={handleReveal} />
         <ScratchCircle value="2026" onReveal={handleReveal} />
       </div>
 
-      {count === 3 && (
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-16"
-        >
-          <p className="text-2xl font-serif text-teal-900">
-            We look forward to celebrating this beautiful day with you
-          </p>
-        </motion.div>
-      )}
+      {/* FINAL MESSAGE - Now properly centered and padded */}
+      <AnimatePresence>
+        {count === 3 && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-16 px-6" /* Added padding here */
+          >
+            <p className="text-2xl md:text-3xl font-serif text-teal-900 max-w-2xl mx-auto leading-relaxed">
+              We look forward to celebrating this beautiful day with you
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* 👇 THIS WILL NOW WORK */}
-      {showConfetti && <Confetti />}
+      {/* CONFETTI */}
+      <AnimatePresence>
+        {showConfetti && <Confetti />}
+      </AnimatePresence>
+      
     </section>
   );
 }
